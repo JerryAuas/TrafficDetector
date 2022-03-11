@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../static/web.css">
+</head>
+<body>
+    <div class="middle">
+            <main>
+                <div class="main">
+                    <img src="../static/photo/1.jpg">
+                    <canvas id="canvas" width="1200px" height="780px"></canvas>
+                </div>
+            </main>
+        <div class="text12" style="font-size: 22px;  background-color: white; border-radius: 5px; font-weight: 700">提示：请在图中以四个点为单位去标记你将要监控到的路口，标记方向和标点均按顺时针（从左边开始，按左上右下标记）标记</div>
+            <nav>
+                <div class="nav">
+                    <form method="get" action="/web_get" class="position">
+                        <p>方向一</p>
+                        <label>1.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>2.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>3.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>4.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <p>方向二</p>
+                        <label>1.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>2.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>3.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>4.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <p>方向三</p>
+                        <label>1.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>2.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>3.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>4.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <p>方向四</p>
+                        <label>1.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>2.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>3.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <label>4.
+                            <input type="text" class="text" name="text">
+                            <input type="text" class="text" name="text">
+                        </label>
+                        <br>
+                        <input type="submit" class="determent">
+                    </form>
+                    <button class="btn">查看配置</button>
+                    <form action="/get_config" method="get" class="config">
+                        <select class="img_size_se">
+                            <option>480</option>
+                            <option>640</option>
+                            <option>960</option>
+                        </select>
+                        <label><span>img_size </span><input type="text" class="img_size" name="img_size"></label>
+                        <br>
+                        <select class="threshold_se">
+                            <option>0.15</option>
+                            <option>0.25</option>
+                        </select>
+                        <label><span>threshold</span><input type="text" class="threshold" name="threshold"></label>
+                        <br>
+                        <select class="stride_se">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>4</option>
+                            <option>6</option>
+                            <option>8</option>
+                            <option>10</option>
+                        </select>
+                        <label><span>stride   </span><input type="text" class="stride" name="stride"></label>
+                        <br>
+                        <label><span>weight   </span><input type="text" class="weight" name="weight" readonly></label>
+                        <br>
+                        <select class="device_se">
+                            <option>0,1,2,3</option>
+                            <option>cpu</option>
+                        </select>
+                        <label><span>device   </span><input type="text" class="device" name="device"></label>
+                        <br>
+                        <input class="narrow" type="button" value="缩小">
+                        <br>
+                        <input type="submit" value="提交配置" class="narrow2">
+                    </form>
+                </div>
+            </nav>
+    </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"
+            type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        const po = document.querySelector('.position');
+        const narrow = document.querySelector('.narrow');
+        const btn = document.querySelector('.btn');
+        const config = document.querySelector('.config');
+        const img_size = document.querySelector('.img_size');
+        const threshold = document.querySelector('.threshold');
+        const stride = document.querySelector('.stride');
+        const weight = document.querySelector('.weight');
+        const device = document.querySelector('.device');
+        let c = document.getElementById('canvas');
+        var ctx = c.getContext('2d');
+        var d = document.querySelectorAll('.text');
+        var i = 0;
+        var x_, y_;
+            c.addEventListener('click', function(event){
+	    if (i < 32) {
+            var rect = c.getBoundingClientRect();
+            var x = event.clientX - rect.left * (c.width / rect.width);
+            var y = event.clientY - rect.top * (c.height / rect.height);
+            d[i].value = x;
+            d[i + 1].value = y;
+            x_ = d[i].value;
+            y_ = d[i + 1].value;
+            i = i + 2;
+        }
+        if (i % 8 === 0){
+            ctx.beginPath();
+            ctx.moveTo(d[i - 8].value, d[i - 7].value);
+            ctx.lineTo(d[i - 6].value, d[i - 5].value);
+            ctx.lineTo(d[i - 4].value, d[i - 3].value);
+    		ctx.lineTo(d[i - 2].value, d[i - 1].value);
+        	ctx.fill();
+    	}
+    })
+    function get(){
+        a = $.ajax({
+            url: "./detector_config.json",
+            type: "GET",
+            dataType: "json",
+            async: false,
+            success: function (data) {
+            }
+        });
+        let result = jQuery.parseJSON(a["responseText"]);
+        img_size.value = result.img_size;
+        threshold.value = result.threshold;
+        stride.value = result.stride;
+        weight.value = result.weight;
+        device.value = result.device;
+    }
+    btn.addEventListener('click', function () {
+        btn.style.display = 'none';
+        config.style.display = 'block';
+        po.style.display = 'none'
+        get();
+    })
+    narrow.addEventListener('click',function (){
+        btn.style.display = 'block';
+        config.style.display = 'none';
+        po.style.display = 'block';
+    })
+    </script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.middle{
+    width: 100%;
+    display: flex;
+    padding: 100px 140px;
+    height: auto;
+    background: url(./photo/背景1.jpg) no-repeat;
+    background-size: cover;
+}
+.main{
+    box-sizing: border-box;
+    width: 1200px;
+    padding: 10px 0px;
+    margin: 0 30px;
+    flex: none;
+    height: 800px;
+    background-color: black;
+}
+.main .center{
+    width: 100%;
+    height: 100%;
+}
+.nav{
+    box-sizing: border-box;
+    padding: 10px 0;
+    flex: none;
+    width: 350px;
+    height: 800px;
+    background-color: burlywood;
+    background-image: url("./photo/磨砂.png");
+    opacity: 0.5;
+}
+.nav input{
+    width: 170px;
+    border-radius: 4px;
+    background-color: burlywood;
+    font-weight: 1000;
+}
+.nav textarea{
+    width: 300px;
+    height: 200px;
+    overflow-y: auto;
+    background-color: burlywood;
+    position: relative;
+    left: 20px;
+    font-weight: 600;
+}
+.nav label{
+    font-weight: 800;
+}
+.btn{
+    background-color: burlywood;
+    width: 100px;
+    height: 40px;
+    position: relative;
+    left: 115px;
+    transition-duration: 1s;
+    transition-property: all;
+}
+.btn:active{
+    background-color: #1dd7f8
+}
+.nav label{
+    position: relative;
+    left: 20px;
+}
+.nav p{
+    position: relative;
+    left: 20px;
+    font-weight: 800;
+}
+.nav a{
+    width: 100px;
+    height: 40px;
+    background-color: burlywood;
+    position: relative;
+    top: 50px;
+    text-decoration: none;
+    color: black;
+}
+.btn1{
+    left: -90px;
+}
+.btn2{
+    left: -20px;
+}
+
+

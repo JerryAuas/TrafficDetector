@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+            integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+            crossorigin="anonymous"
+            type="text/javascript">
+	</script>
+    	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.5.0/jszip.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/FileSaver.js/2.0.4/FileSaver.js"></script>
+	<link rel="stylesheet" href="../static/web_use.css" type="text/css">
+</head>
+<body>
+	<div class="middle">
+            <main>
+                <div class="main">
+					<img src="{{ url_for('video_feed', feed_type='Camera_0') }}" class="center"  style="border:1px solid black;width:100%;color:white" alt="Please wait a moment!">
+                </div>
+            </main>
+            <nav>
+                <div class="nav">
+                    <label>视频帧率:<input type="text" readonly class="FPS"></label>
+                    <br>
+                    <label>车辆总数:<input type="text" readonly class="car_num"></label>
+                    <br>
+                    <label>交通状况:<input type="text" readonly class="road"></label>
+                    <br>
+                    <label>行人数量:<input type="text" readonly class="people"></label>
+                    <br>
+                    <label>车辆数量:<input type="text" readonly class="car"></label>
+                    <br>
+                    <label>上->左：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>上->右：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>上->下：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>左->右：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>左->上：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>左->下：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>右->上：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>右->左：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>右->下：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>下->左：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>下->上：<input type="text" readonly class="N"></label>
+                    <br>
+                    <label>下->右：<input type="text" readonly class="N"></label>
+                    <br>
+                    <p>来往车辆id和类型统计：</p>
+                    <textarea class="show_id" readonly></textarea>
+                    <button class="btn">重新开始</button>
+                    <a class="btn1" href="photo_1.html" target="_blank">展示车辆撞线图</a>
+                    <a class="btn2" href="photo_2.html" target="_blank">展示车辆相撞图</a>
+                </div>
+            </nav>
+    </div>
+<script>
+        const btn = document.querySelector('.btn');
+		const u = document.querySelectorAll('.N');
+        const fps = document.querySelector('.FPS');
+        const car_num = document.querySelector('.car_num');
+        const road = document.querySelector('.road');
+        const show = document.querySelector('.show_id');
+        const people = document.querySelector('.people');
+        const car = document.querySelector('.car');
+        function text() {
+            show.value = '';
+            a = $.ajax({
+                url: "./json_dict_style.json",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                }
+            });
+            b = $.ajax({
+                url: "./json_dict.json",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                }
+            });
+            c = $.ajax({
+                url: "./json_dict_sum.json",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                }
+            });
+            d = $.ajax({
+                url: "./json_dict_label.json",
+                type: "GET",
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                }
+            });
+            aa = a.responseText;
+            bb = b.responseText;
+            result = jQuery.parseJSON(a["responseText"]);
+            result2 = jQuery.parseJSON(b["responseText"]);
+            result3 = jQuery.parseJSON(c["responseText"]);
+            result4 = jQuery.parseJSON(d["responseText"]);
+            u[0].value = result.UP_LEFT;
+            u[1].value = result.UP_RIGHT;
+            u[2].value = result.UP_DOWN;
+            u[3].value = result.LEFT_RIGHT;
+            u[4].value = result.LEFT_UP;
+            u[5].value = result.LEFT_DOWN;
+            u[6].value = result.RIGHT_UP;
+            u[7].value = result.RIGHT_LEFT;
+            u[8].value = result.RIGHT_DOWN;
+            u[9].value = result.DOWN_LEFT;
+            u[10].value = result.DOWN_UP;
+            u[11].value = result.DOWN_RIGHT;
+            fps.value = result.FPS;
+            car_num.value = result2.len_list;
+            road.value = result2.style;
+            car.value = result3.Sum_vehicle;
+            people.value = result3.Sum_person;
+            for (var i = 0 ; i < result4.length; i++){
+                show.value = show.value + "\n" + "目标id:" + result4[i].id + "目标类型:" + result4[i].label;
+            }
+        }
+        setInterval("text()",2000);
+        btn.addEventListener('click', function (){
+            window.location.replace('./web_use.html');
+        })
+
+    </script>
+</body>
+</html>
